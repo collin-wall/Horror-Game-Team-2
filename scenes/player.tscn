@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://dpgwn6brwqgow"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_puxf0"]
+[ext_resource type="Shader" path="res://shaders/vignette.gdshader" id="2_kgloy"]
+[ext_resource type="AudioStream" uid="uid://g1fsmhophm78" path="res://sounds/footstep1.wav" id="3_6yskx"]
+[ext_resource type="Shader" path="res://shaders/pixelate.gdshader" id="3_87t21"]
+[ext_resource type="AudioStream" uid="uid://dccrh65sy1u0r" path="res://sounds/footstep2.wav" id="4_3tpam"]
+[ext_resource type="AudioStream" uid="uid://bksoxv6u10swk" path="res://sounds/footstep3.wav" id="5_jnw6b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fitl6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2q12"]
+shader = ExtResource("2_kgloy")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_px2ew"]
+shader = ExtResource("3_87t21")
+shader_parameter/pixel_size = 4.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uxkkk"]
+streams_count = 3
+stream_0/stream = ExtResource("3_6yskx")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_3tpam")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_jnw6b")
+stream_2/weight = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_puxf0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fitl6")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D"]
+light_energy = 3.0
+light_specular = 0.0
+spot_range = 20.0
+spot_attenuation = -1.2
+spot_angle = 30.0
+
+[node name="Vignette" type="ColorRect" parent="Head/Camera3D"]
+material = SubResource("ShaderMaterial_l2q12")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Pixelate" type="ColorRect" parent="Head/Camera3D"]
+material = SubResource("ShaderMaterial_px2ew")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Feet" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="Feet"]
+stream = SubResource("AudioStreamRandomizer_uxkkk")
+volume_db = -24.0

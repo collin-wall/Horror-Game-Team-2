@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cu4marioji7we"
+path.s3tc="res://.godot/imported/trailer_tyres and support_normal.png-ed5dbcdc3baca6659be7003bf2d0a948.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f6be2a7bb0a538327c2f4a86a9bec000"
+}
+
+[deps]
+
+source_file="res://meshes_and_textures/trailer/trailer_tyres and support_normal.png"
+dest_files=["res://.godot/imported/trailer_tyres and support_normal.png-ed5dbcdc3baca6659be7003bf2d0a948.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://meshes/trailer/trailer_tyres and support_normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

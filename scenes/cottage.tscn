@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://hrhflbh58nec"]
+
+[ext_resource type="PackedScene" uid="uid://llq5tvyt0eko" path="res://meshes_and_textures/cottage/cottage.glb" id="1_wif4q"]
+[ext_resource type="Texture2D" uid="uid://4p4pcrjvhd74" path="res://meshes_and_textures/cottage/cottage_diffuse.png" id="2_lvrme"]
+[ext_resource type="Texture2D" uid="uid://d03s3ei7kre3d" path="res://meshes_and_textures/cottage/cottage_normal.png" id="3_3xcdb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wjgt"]
+albedo_texture = ExtResource("2_lvrme")
+normal_enabled = true
+normal_texture = ExtResource("3_3xcdb")
+
+[node name="Cottage" instance=ExtResource("1_wif4q")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3wjgt")
