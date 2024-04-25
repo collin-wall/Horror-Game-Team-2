@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp6rnea1a4r52"]
+
+[ext_resource type="PackedScene" uid="uid://c64yrocnc4g7n" path="res://meshes_and_textures/tire/tire.glb" id="1_e0b6g"]
+[ext_resource type="Script" path="res://scripts/tire.gd" id="2_r6vb3"]
+[ext_resource type="PackedScene" uid="uid://cvnvb31g2tdu1" path="res://scenes/interaction/interactable.tscn" id="3_efyml"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kg1ss"]
+points = PackedVector3Array(-1.90587, -10.1726, -0.698404, 1.94493, 10.3811, 0.584509, 2.79429, 9.62822, 1.79975, -10.0411, 0.970014, 2.527, -7.79317, 2.17974, -3.49333, 9.09513, -0.310441, -3.19971, 7.90508, -5.05806, 3.09829, 3.79501, -8.85635, -2.90994, -3.83237, 9.26172, -2.61875, 7.25365, 5.99102, 3.08985, -3.44173, -7.82033, 3.37768, -7.67778, -6.71756, -2.30267, -4.68045, 7.17512, 3.36907, 5.62705, 7.18805, -3.18978, 2.2576, -10.0005, 2.19417, 10.3698, 1.94281, 0.583803, 8.37458, -6.44136, -0.706839, -9.68265, 4.19622, -0.70821, -2.18166, -7.79302, -3.49327, -7.72527, -6.75911, 2.18962, -10.039, -2.58887, -2.00685, -5.4597, 8.67153, 2.18445, 8.04151, 6.75366, -1.34964, 8.46202, 0.938697, 3.38439, 2.18162, 7.79288, -3.49321, -8.14508, -2.50437, 3.3824, 6.84597, -4.35599, -3.48752, 2.57823, 9.99773, -1.99886, -3.85181, -9.63053, 1.86248, 10.3814, -1.94296, 0.584532, -2.2428, 9.61374, 2.82059, -8.6269, 5.4316, -2.29979)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e7piy"]
+height = 9.71657
+radius = 12.2516
+
+[node name="Tire" instance=ExtResource("1_e0b6g")]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
+script = ExtResource("2_r6vb3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="13484_Off-Road_Tire_v1_L2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="13484_Off-Road_Tire_v1_L2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_kg1ss")
+
+[node name="Interactable" parent="." index="1" instance=ExtResource("3_efyml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+shape = SubResource("CylinderShape3D_e7piy")
+
+[connection signal="focused" from="Interactable" to="." method="_on_interactable_focused"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="unfocused" from="Interactable" to="." method="_on_interactable_unfocused"]
+
+[editable path="Interactable"]
