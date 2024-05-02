@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs1unipn1v2yj"]
+
+[ext_resource type="PackedScene" uid="uid://fowenpkky14s" path="res://meshes_and_textures/key/key.glb" id="1_etcw1"]
+[ext_resource type="Script" path="res://scripts/key.gd" id="2_1a1xm"]
+[ext_resource type="PackedScene" uid="uid://cvnvb31g2tdu1" path="res://scenes/interaction/interactable.tscn" id="3_ww3ec"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bukko"]
+size = Vector3(4.36012, 4.65639, 8.36483)
+
+[node name="Key" instance=ExtResource("1_etcw1")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("2_1a1xm")
+
+[node name="Interactable" parent="." index="1" instance=ExtResource("3_ww3ec")]
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156517, -0.0334243, 2.07677)
+shape = SubResource("BoxShape3D_bukko")
+
+[connection signal="focused" from="Interactable" to="." method="_on_interactable_focused"]
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="unfocused" from="Interactable" to="." method="_on_interactable_unfocused"]
+
+[editable path="Interactable"]

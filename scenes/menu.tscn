@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://cums57sfqtt4o"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_53pat"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_53pat")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_top = 320.0
+offset_right = 1920.0
+offset_bottom = 495.0
+theme_override_font_sizes/font_size = 128
+text = "Shadow Man"
+horizontal_alignment = 1
+
+[node name="Controls" type="Label" parent="."]
+offset_top = 736.0
+offset_right = 1920.0
+offset_bottom = 807.0
+theme_override_font_sizes/font_size = 24
+text = "WASD to move
+F to interact"
+horizontal_alignment = 1
+
+[node name="Tutorial" type="Label" parent="."]
+offset_top = 480.0
+offset_right = 1920.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Find the key to escape and avoid the Shadow Man."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 576.0
+offset_right = 1920.0
+offset_bottom = 672.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Play" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Quit" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]

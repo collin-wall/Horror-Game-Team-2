@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
 @onready var footstep_player = $Feet/Footsteps
 
 const SPEED = 2.75
@@ -22,7 +21,7 @@ func _physics_process(delta):
 	
 	# Get Input/Direction.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Apply Speed/Deceleration.
 	if direction:
@@ -42,10 +41,10 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		# Camera Movement.
-		head.rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-		camera.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+		rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
+		head.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
+		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
-	# Quit Game.
+	# Quit to Menu.
 	if Input.is_action_just_pressed("escape"):
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")

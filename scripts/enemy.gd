@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-const FINAL_DETECTION_RANGE = 8.75
+const FINAL_DETECTION_RANGE = 6.5
 const KILL_RANGE = 2
-const WALK_SPEED = 2
+const WALK_SPEED = 1.65
 const SPRINT_SPEED = 9
 const CRAWL_SPEED = 7
 
@@ -50,6 +50,8 @@ func _physics_process(delta):
 	if target_in_range(KILL_RANGE):
 		if !jumpscare_player.playing:
 			jumpscare_player.play()
+			await get_tree().create_timer(1.25).timeout
+			get_tree().change_scene_to_file("res://scenes/death.tscn")
 	
 	move_and_slide()
 	
