@@ -7,7 +7,7 @@ var controller : Node3D
 func interact(interactable : Interactable):
 	interactable.interacted.emit(self)
 
-func focus(interactable : Interactable):	
+func focus(interactable : Interactable):
 	interactable.focused.emit(self)
 	
 func unfocus(interactable : Interactable):
