@@ -12,7 +12,6 @@ size = Vector3(9.0239, 5.25433, 8.79053)
 transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="rock" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rock/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.959379, 0.949217, -0.058441)
